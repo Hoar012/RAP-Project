@@ -36,6 +36,7 @@
   <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
@@ -69,7 +70,6 @@
                     <a href="https://xyue.io/" target="_blank">Xiangyu Yue</a><sup>1†</sup>
                   </span>
 
-                  
                   </div>
 
                   <div class="is-size-5 publication-authors">
@@ -217,6 +217,101 @@ Region-of-interest detected by an open world detector are used to retrieve conce
   <div class="columns is-centered has-text-centered">
   </div>
 
+<!-- QA Demo -->
+<section class="section">
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-six-fifths">
+      <h2 class="title is-3">Examples of Personalized Conversation</h2>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <div class="form-row" style="justify-content: center;">
+      <div class="form-group col-md-1">
+        <div class="col-md-2" style="width: 100%"><label>&nbsp;</label></div>
+        <div class="btn-group" role="group" aria-label="Left and Right Controller"
+          style="width: 100%;align-items: center;justify-content: center;flex-direction: row;display: flex;">
+          <button type="button" class="form-control btn btn-primary" id="prev-question"><i
+              class="material-icons">keyboard_arrow_left</i></button>
+          <button type="button" class="form-control btn btn-primary" id="next-question"><i
+              class="material-icons">keyboard_arrow_right</i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Question Card -->
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <div class="card mb-4" style="width: 60%; display: flex; align-items: center;">
+        <div class="card-body" id="selected-question" style="display: flex;">
+          <div class="chat-history">
+            <!-- Add your chat messages here -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Recognition Demo -->
+<div class="columns is-centered has-text-centered">
+</div>
+<section class="section hero">
+<div class="container is-max-desktop">
+<div class="columns is-centered has-text-centered">
+<div class="column is-four-fifths">
+<h2 class="title is-3">Examples of Personalized Concept Recognition</h2>
+<div class="content has-text-justified">
+<img src="static/images/recognition.png" alt="MY ALT TEXT" />
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="columns is-centered has-text-centered">
+</div>
+
+<!-- Concept Edit Demo -->
+<div class="columns is-centered has-text-centered">
+</div>
+<section class="section hero">
+<div class="container is-max-desktop">
+<div class="columns is-centered has-text-centered">
+<div class="column is-four-fifths">
+<h2 class="title is-3">Real-time Concept Editing</h2>
+<div class="content has-text-justified">
+<p>
+  Our models support real-time editing of concepts by modifying the database. Based on the information recorded in the database, our RAP-LLaVA can provide reliable and accurate answers.
+</p>
+<img src="static/images/edit.png" alt="MY ALT TEXT" />
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="columns is-centered has-text-centered">
+</div>
+
+<!-- Concept Update Demo -->
+<div class="columns is-centered has-text-centered">
+</div>
+<section class="section hero">
+<div class="container is-max-desktop">
+<div class="columns is-centered has-text-centered">
+<div class="column is-four-fifths">
+<h2 class="title is-3">Real-time Concept Updating</h2>
+<div class="content has-text-justified">
+<p>
+  The first caption is generated when toy2 not yet stored in the database. Once the new concept is added, RAP-LLaVA can recognize both toy1 and toy2.
+</p>
+<img src="static/images/update.png" alt="MY ALT TEXT" />
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="columns is-centered has-text-centered">
+</div>
 
 <!--BibTex citation -->
   <section class="section" id="BibTeX">
@@ -260,5 +355,144 @@ Region-of-interest detected by an open world detector are used to retrieve conce
 
     <!-- End of Statcounter Code -->
 
+    <script>
+      // Handle message showing
+      function createChatRow(sender, text, imageSrc) {
+        var article = document.createElement("article");
+        article.className = "media"
+  
+        var figure = document.createElement("figure");
+        figure.className = "media-left";
+  
+        var span = document.createElement("span");
+        span.className = "icon is-large";
+  
+        var icon = document.createElement("i");
+        // icon.className = "fas fas fa-2x" + (sender === "User" ? " fa-user " : sender === "YoLLaVA" ? " fa-robot" : "");
+  
+        var media = document.createElement("div");
+        media.className = "media-content";
+  
+        var content = document.createElement("div");
+        content.className = "content";
+  
+        var para = document.createElement("p");
+  
+        // wrap text in pre tag to preserve whitespace and line breaks
+        var pre_text = document.createElement("pre");
+        pre_text.style = "background-color: white; font-size: 18px; font-family: Arial; padding: 0; margin: 0; white-space: pre-wrap; word-wrap: break-word;";
+        var paraText = document.createTextNode(text);
+        pre_text.appendChild(paraText);
+  
+        var strong = document.createElement("strong");
+        strong.innerHTML = sender;
+        var br = document.createElement("br");
+  
+        para.appendChild(strong);
+        para.appendChild(br);
+        para.appendChild(pre_text);
+  
+        // Add image if imageSrc is provided
+        if (imageSrc) {
+          var img = document.createElement("img");
+          img.src = imageSrc;
+          img.style = "max-width: 95%; max-height: 600px;"; // Adjust the style as needed
+          para.appendChild(img);
+        }
+  
+        content.appendChild(para);
+        media.appendChild(content);
+        span.appendChild(icon);
+        figure.appendChild(span);
+        if (sender !== "Description") {
+          article.appendChild(figure);
+        };
+        article.appendChild(media);
+        return article;
+      }
+  
+      function addMessageToChatHistory(sender, message, imageSrc) {
+        const chatHistory = document.querySelector('.chat-history');
+        const chatRow = createChatRow(sender, message, imageSrc);
+        chatHistory.appendChild(chatRow);
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+      }
+  
+      function clearChatHistory() {
+        const chatHistory = document.querySelector('.chat-history');
+        chatHistory.innerHTML = "";
+      }
+  
+      // 
+      const conversations = [
+        {
+          "description": "QA-example1",
+          "turns": [
+            ["", "", "./static/images/QA1.png"]
+          ]
+        },
+        {
+          "description": "QA-example2",
+          "turns": [
+            ["", "", "./static/images/QA2.png"]
+          ]
+        },
+        {
+          "description": "QA-example3",
+          "turns": [
+            ["", "", "./static/images/QA3.png"]
+          ]
+        },
+        {
+          "description": "QA-example4",
+          "turns": [
+            ["", "", "./static/images/QA4.png"]
+          ]
+        },
+        {
+          "description": "QA-example5",
+          "turns": [
+            ["", "", "./static/images/QA5.png"]
+          ]
+        }
+      ];
+  
+      // The current image index
+      let currentIndex = 0;
+  
+      // The function to update the displayed chat history
+      function update_dialog_demo() {
+        // Clear the chat history
+        clearChatHistory();
+  
+        for (let i = 0; i < conversations[currentIndex].turns.length; i++) {
+          if (conversations[currentIndex].turns[i].length == 2) {
+            addMessageToChatHistory(conversations[currentIndex].turns[i][0], conversations[currentIndex].turns[i][1]);
+          }
+          else {
+            addMessageToChatHistory(conversations[currentIndex].turns[i][0], conversations[currentIndex].turns[i][1], conversations[currentIndex].turns[i][2]);
+          }
+        }
+  
+        // scroll to the top of the chat history
+        document.querySelector('.chat-history').scrollTop = 0;
+      }
+  
+      // Initialize the displayed image
+      update_dialog_demo();
+  
+      // Event listeners for the buttons
+      document.getElementById('prev-question').addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + conversations.length) % conversations.length;
+        update_dialog_demo();
+      });
+  
+      document.getElementById('next-question').addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % conversations.length;
+        update_dialog_demo();
+      });
+  
+  
+    </script>
   </body>
   </html>
