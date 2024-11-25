@@ -94,7 +94,7 @@
                 </a>
               </span>
 
-                         <!-- Arxiv PDF link -->
+                <!-- Arxiv PDF link -->
                       <span class="link-block">
                         <a href="https://arxiv.org/pdf/2410.13360" target="_blank"
                         class="external-link button is-normal is-rounded is-dark">
@@ -189,9 +189,26 @@ Region-of-interest detected by an open world detector are used to retrieve conce
   </div>
   </div>
   </section>
-  <div class="columns is-centered has-text-centered">
-  <HR align="center" style="border:3 double #000000" width="80%" SIZE="5">
-  </div>
+
+
+    <section class="section hero">
+    <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+    <h2 class="title is-3">Personalized Training Dataset</h2>
+    <div class="content has-text-justified">
+    <img src="static/images/dataset.png" alt="MY ALT TEXT" />
+    <p>
+      We first crop the target concept from the image based on the dataset annotations and then query Gemini to generate its personalized description. We also apply data augmentation to diversify these cropped images. Then we combine them with the original image to derive a series of instructions and answers from Gemini. When noise concepts are included in the additional information, the answer remains unchanged, helping to train the MLLMs' ability to filter out irrelevant concepts.
+    </p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    <div class="columns is-centered has-text-centered">
+    <HR align="center" style="border:3 double #000000" width="80%" SIZE="5">
+    </div>
 
 <!-- Caption Demo -->
 <div class="columns is-centered has-text-centered">
